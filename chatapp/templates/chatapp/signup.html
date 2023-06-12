@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static  %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>ChatGPT</h2>
+        <h4>Signup Form</h4>
+        <form action="" method = 'POST'>
+            {% csrf_token %}
+            
+            {% for field in form %}
+
+            <div class="input">
+                {{field}}
+                {% if field.errors %}
+                <small style="color:red">{{field.errors}}</small>
+                {% endif %}
+            </div>
+            
+                
+            {% endfor %}
+                
+
+         
+            {% comment %} <div class="input">
+                <input type="email" name="" id="" class="form-control" placeholder="Enter email">
+                <!-- <small>Username has been taken</small> -->
+            </div>
+
+            <div class="input">
+                <input type="password" name="" id="" class="form-control" placeholder="Enter password">
+                <!-- <small>Username has been taken</small> -->
+            </div>
+
+            <div class="input">
+                <input type="password" name="" id="" class="form-control" placeholder="Confirm Password">
+                <!-- <small>Username has been taken</small> -->
+            </div> {% endcomment %}
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit">Create account</button>
+              </div>
+              <p>Have an account? <span><a href="{% url 'signin' %}">Login</a></span></p>
+        </form>
+    </div>
+    
+</body>
+</html>
