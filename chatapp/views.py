@@ -9,8 +9,8 @@ import openai
 import json
 
 # Create your views here.
-open_api_key = "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"
-openai.api_key = open_api_key
+open_api_key = '' # place your api key
+client = openai.Client(api_key=open_api_key)
 
 
 @login_required(login_url='signin')
@@ -76,17 +76,18 @@ def signout(request):
 
 
 def ask_openai(message):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "system", "content": "You are a gernal man which knows every things"},
             {"role": "user", "content": message},
             
         ]
     
 )
     
-    answer = response['choices'][0]['message']['content']
+    answer = response.choices[0].message.content.strip()
+    # print(answer)
     return answer
 
 
